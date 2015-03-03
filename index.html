@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,23 +17,71 @@
 		// (notice the different style of comments)
 
 		// here is where you declare your vars, like:
-		// var one = 1;
-
+		var line;
+		var column;
+		var total_columns;
+		var total_lines;
+		var line_percent;
+		var column_percent;
+		var progress;
+		var output;
 	 /**
 	 * Setup - this is where you get things ready before running the loop
 	 */
 		function setup() {
+			line = 0
+			column = 0
+			total_lines = 60
+			total_columns = 50
+
+			output = ""
+			}
 			// this tells p5 that we are not using the
 			// `<canvas>` element (more on that later)
 			noCanvas();
-		}
+
 
 		/**
 		 * Here's the draw loop! This is where all the fun stuff happens.
 		 */
 		function draw() {
 			// this will continue to loop
+
+			if(line < total_lines) {
+				line_percent = line/ total_lines;
+
+			while(column < total_columns) {
+				column_percent = line/ total_columns;
+
+				progress = (line_percent + column_percent) / 6;
+
+				if(progress < 0.2) {
+					output = output + 'Lolz';
+				}
+				else if (progress < 0.1) {
+					output = output + 'oo';
+				}
+				else if (progress< 0.6){
+					output = output +"BBBB";
+				}
+
+				else {
+					output = output + "xx";
+				}
+
+				output = output + ' ';
+
+				column = column + 1;
+			}
+
+			createDiv(output);
+			output = '';
+			column = 0;
+
+			line = line + 1;
+
 		}
+	}
 
 		// now leaving the land of javascript...
 		</script>
@@ -42,8 +91,10 @@
 			body {
 				padding: 0;
 				margin: 0;
-				font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+				font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
 				font-size: 200%;
+				color:white;
+				background: black;
 			}
 		</style>
 
@@ -55,3 +106,4 @@
 	</body>
 
 </html>
+
